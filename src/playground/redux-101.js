@@ -27,8 +27,15 @@ const setCount = ({count}) => ({
 });
 
 
-const store = createStore( (state={ count:0 }, action) => {
+// this is a reducer in Redux world
+// https://redux.js.org/basics/reducers
 
+// 1) Reducers are pure functions -
+//    a) output is determined by input (things outside of function scope aren't changed or used)
+//    b) things outside of reducer scope aren't changed by reducer functions
+// 2) Never change STATE or ACTION - (NO MUTATIONS ALLOWED)
+
+const countReducer = (state={ count:0 }, action) => {
     switch (action.type){
         case 'INCREMENT':
             return { count: state.count + action.incrementBy };
@@ -42,8 +49,9 @@ const store = createStore( (state={ count:0 }, action) => {
         default:
             return state;
     }
-});
+};
 
+const store = createStore( countReducer );
 
 store.subscribe( () => {
     console.log( 'store changed', store.getState() );
