@@ -11,7 +11,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 
-console.log('Section 11 Lecture 100');
+console.log('Section 11 Lecture 103');
 
 const store = configureStore();
 store.subscribe( () => {
@@ -26,7 +26,7 @@ store.subscribe( () => {
 store.dispatch(
     addExpense({
         description: 'Water Bill',
-        amount: 100,
+        amount: 311,
         createdAt: 1
     })
 );
@@ -39,7 +39,7 @@ store.dispatch(
     })
 );
 
-store.dispatch( setTextFilter('gas') );
+store.dispatch( setTextFilter('bill') );
 
 
 
