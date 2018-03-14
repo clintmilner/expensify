@@ -39,7 +39,15 @@ store.dispatch(
     })
 );
 
-store.dispatch( setTextFilter('bill') );
+store.dispatch(
+    addExpense({
+        description: 'iPhone Bill',
+        amount: 2500,
+        createdAt: 3
+    })
+);
+
+store.dispatch( setTextFilter('gas') );
 
 
 
