@@ -133,7 +133,7 @@ const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
     return expenses.filter( (expense) => {
         const startDateMatch    = typeof startDate !== 'number' || expense.createdAt >= startDate,
               endDateMatch      = typeof endDate !== 'number'   || expense.createdAt <= endDate,
-              textMatch         = typeof                           expense.description.toLowerCase().includes( text.toLowerCase() );
+              textMatch         =                                  expense.description.toLowerCase().includes( text.toLowerCase() );
 
         return startDateMatch && endDateMatch && textMatch;
     })
