@@ -26,15 +26,15 @@ store.subscribe( () => {
 store.dispatch(
     addExpense({
         description: 'Water Bill',
-        amount: 311,
-        createdAt: 1
+        amount: 1,
+        createdAt: 3
     })
 );
 
 store.dispatch(
     addExpense({
         description: 'Gas Bill',
-        amount: 600,
+        amount: 2,
         createdAt: 2
     })
 );
@@ -42,12 +42,12 @@ store.dispatch(
 store.dispatch(
     addExpense({
         description: 'iPhone Bill',
-        amount: 2500,
-        createdAt: 3
+        amount: 3,
+        createdAt: 1
     })
 );
 
-store.dispatch( setTextFilter('gas') );
+// store.dispatch( setTextFilter('gas') );
 
 
 
