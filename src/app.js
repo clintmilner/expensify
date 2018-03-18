@@ -11,7 +11,7 @@ import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
 
-console.log('Section 11 Lecture 103');
+console.log('Section 12 Lecture 112 - Jest Testing');
 
 const store = configureStore();
 store.subscribe( () => {
