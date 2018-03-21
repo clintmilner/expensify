@@ -9,6 +9,7 @@ import getVisibleExpenses from './selectors/expenses';
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import 'react-dates/lib/css/_datepicker.css';
 
 
 console.log('Section 12 Lecture 112 - Jest Testing');
