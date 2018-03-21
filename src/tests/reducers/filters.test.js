@@ -39,15 +39,17 @@ test('should set text filter',() => {
 });
 
 test('should set startDate filter', () => {
-   const action = { type: 'SET_START_DATE', startDate: moment() };
-   const state = filtersReducer( undefined, action );
+    const now = moment();
+    const action = { type: 'SET_START_DATE', startDate: now };
+    const state = filtersReducer( undefined, action );
 
-   expect( state.startDate ).toEqual( moment() );
+    expect( state.startDate ).toEqual( now );
 });
 
 test('should set endDate filter', () => {
-    const action = { type: 'SET_END_DATE', endDate: moment() };
+    const now = moment();
+    const action = { type: 'SET_END_DATE', endDate: now };
     const state = filtersReducer( undefined, action );
 
-    expect( state.endDate ).toEqual( moment() );
+    expect( state.endDate ).toEqual( now );
 });
