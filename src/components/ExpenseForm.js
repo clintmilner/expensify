@@ -77,7 +77,7 @@ export default class ExpenseForm extends React.Component {
                            onChange={this.onAmountChange}
                            placeholder='Amount' />
 
-                    <textarea placeholder='Add a note for your expense (optional)' value={this.state.note} onChange={this.onNoteChange}></textarea>
+                    <textarea placeholder='Add a note for your expense (optional)' value={this.state.note} onChange={this.onNoteChange} />
 
                     <SingleDatePicker
                         date={this.state.createdAt}
