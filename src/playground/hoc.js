@@ -7,7 +7,6 @@ console.log('Higher Order Components (HOC)');
 // abstract state
 
 
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -22,7 +21,7 @@ const Info = (props) => (
 const withAdminWarning = (WrappedComponent) => {
     return (props) => (
         <div>
-            { props.isAdmin && <strong>This is Private Information - Please don't share!</strong> }
+            {props.isAdmin && <strong>This is Private Information - Please don't share!</strong>}
             <WrappedComponent {...props}/>
         </div>
     );
@@ -32,7 +31,8 @@ const withAdminWarning = (WrappedComponent) => {
 const requireAuthentication = (WrappedComponent) => {
     return (props) => (
         <div>
-            { props.isAuthenticated ? (<WrappedComponent {...props} />) : (<p>Please log-in to view this information!</p>) }
+            {props.isAuthenticated ? (<WrappedComponent {...props} />) : (
+                <p>Please log-in to view this information!</p>)}
         </div>
     );
 };
@@ -41,11 +41,5 @@ const AdminInfo = withAdminWarning(Info);
 const AuthInfo = requireAuthentication(Info);
 
 
-
-
-
-
-
-
 // ReactDOM.render(<AdminInfo info='Clint Rocks!' isAdmin={true} />, document.getElementById('app'));
-ReactDOM.render(<AuthInfo info='Clint Rocks!' isAuthenticated={true} />, document.getElementById('app'));
+ReactDOM.render(<AuthInfo info='Clint Rocks!' isAuthenticated={true}/>, document.getElementById('app'));

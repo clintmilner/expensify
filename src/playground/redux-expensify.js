@@ -1,9 +1,8 @@
-console.log( 'redux-expensify loaded and running' );
+console.log('redux-expensify loaded and running');
 
 
-import { createStore, combineReducers } from 'redux';
+import {createStore, combineReducers} from 'redux';
 import uuid from 'uuid';
-
 
 
 // ==== ACTION GENERATORS ==== \\
@@ -18,7 +17,7 @@ import uuid from 'uuid';
     SET_END_DATE
 */
 
-const addExpense = ({description='', note='', amount=0, createdAt=0} = {}) => ({
+const addExpense = ({description = '', note = '', amount = 0, createdAt = 0} = {}) => ({
     type: 'ADD_EXPENSE',
     expense: {
         id: uuid(),
@@ -66,13 +65,12 @@ const expensesReducerDefaultState = [];
 const expensesReducer = (state = expensesReducerDefaultState, action) => {
     switch (action.type) {
         case 'ADD_EXPENSE':
-            return [ ...state, action.expense ];
+            return [...state, action.expense];
         case 'REMOVE_EXPENSE':
-            return state.filter( (expense) => (expense.id !== action.expense.id));
+            return state.filter((expense) => (expense.id !== action.expense.id));
         case 'EDIT_EXPENSE':
-            return state.map( (expense) => {
-                if(expense.id === action.id)
-                {
+            return state.map((expense) => {
+                if (expense.id === action.id) {
                     return {
                         ...expense,
                         ...action.updates
@@ -130,21 +128,21 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
 // Get Visible Expenses
 
 const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
-    return expenses.filter( (expense) => {
-        const startDateMatch    = typeof startDate !== 'number' || expense.createdAt >= startDate,
-              endDateMatch      = typeof endDate !== 'number'   || expense.createdAt <= endDate,
-              textMatch         =                                  expense.description.toLowerCase().includes( text.toLowerCase() );
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate,
+            endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate,
+            textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
         return startDateMatch && endDateMatch && textMatch;
     })
-    .sort( (a,b) => {
-        if( sortBy === 'date' ){
-            return a.createdAt < b.createdAt ? 1 : -1; // sortBy DESC
-        }
-        else if( sortBy === 'amount' ){
-            return a.amount < b.amount ? 1 : -1 // sortBy High->Low
-        }
-    });
+        .sort((a, b) => {
+            if (sortBy === 'date') {
+                return a.createdAt < b.createdAt ? 1 : -1; // sortBy DESC
+            }
+            else if (sortBy === 'amount') {
+                return a.amount < b.amount ? 1 : -1 // sortBy High->Low
+            }
+        });
 };
 
 
@@ -159,14 +157,14 @@ const store = createStore(
 
 store.subscribe(() => {
     const {expenses, filters} = store.getState();
-    const visibleExpenses = getVisibleExpenses( expenses, filters );
+    const visibleExpenses = getVisibleExpenses(expenses, filters);
 
-    console.log( visibleExpenses );
+    console.log(visibleExpenses);
 });
 
-const e1 = store.dispatch( addExpense({ description:'Rent', amount:1, createdAt: 1 }) );
-const e2 = store.dispatch( addExpense({ description:'Redbull', amount:2, createdAt: 2 }) );
-const e3 = store.dispatch( addExpense({ description:'Lunch', amount:3, createdAt: 3 }) );
+const e1 = store.dispatch(addExpense({description: 'Rent', amount: 1, createdAt: 1}));
+const e2 = store.dispatch(addExpense({description: 'Redbull', amount: 2, createdAt: 2}));
+const e3 = store.dispatch(addExpense({description: 'Lunch', amount: 3, createdAt: 3}));
 
 // store.dispatch( removeExpense({ id: e1.expense.id }) ); // remove rent
 
@@ -176,7 +174,7 @@ const e3 = store.dispatch( addExpense({ description:'Lunch', amount:3, createdAt
 // store.dispatch( setTextFilter('lunch') );
 // store.dispatch( setTextFilter('') );
 
-store.dispatch( sortByAmount() );
+store.dispatch(sortByAmount());
 // store.dispatch( sortByDate() );
 
 // store.dispatch( setStartDate(0) );

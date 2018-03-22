@@ -1,31 +1,36 @@
 import expensesReducer from '../../reducers/expenses';
 import expenses from '../fixtures/expenses';
-import uuid from "uuid";
 import moment from "moment";
 
 test('should set default state', () => {
-    const state = expensesReducer( undefined, { type: '@@INIT' } );
+    const state = expensesReducer(undefined, {type: '@@INIT'});
     expect(state).toEqual([]);
 });
 
-test ('should remove expense by ID', () => {
-    const action = { type: 'REMOVE_EXPENSE', expense: { id: expenses[1].id} };
-    const state = expensesReducer( expenses, action );
+test('should remove expense by ID', () => {
+    const action = {type: 'REMOVE_EXPENSE', expense: {id: expenses[1].id}};
+    const state = expensesReducer(expenses, action);
 
-    expect(state).toEqual([ expenses[0], expenses[2] ]);
+    expect(state).toEqual([expenses[0], expenses[2]]);
 });
 
-test ('should NOT remove expense if ID is not found', () => {
-    const action = { type: 'REMOVE_EXPENSE', expense: { id: '-1'} };
-    const state = expensesReducer( expenses, action );
+test('should NOT remove expense if ID is not found', () => {
+    const action = {type: 'REMOVE_EXPENSE', expense: {id: '-1'}};
+    const state = expensesReducer(expenses, action);
 
     expect(state).toEqual(expenses);
 });
 
 test('should add a new expense', () => {
-    const expense = { id: '4', description: '311 Day Tickets', note: '', amount: 3113311, createdAt: moment(0).add(5, 'days').valueOf() };
-    const action = { type: 'ADD_EXPENSE', expense };
-    const state = expensesReducer( expenses, action );
+    const expense = {
+        id: '4',
+        description: '311 Day Tickets',
+        note: '',
+        amount: 3113311,
+        createdAt: moment(0).add(5, 'days').valueOf()
+    };
+    const action = {type: 'ADD_EXPENSE', expense};
+    const state = expensesReducer(expenses, action);
 
     expect(state).toEqual([...expenses, expense]);
 });
@@ -33,10 +38,10 @@ test('should add a new expense', () => {
 test('should edit an expense', () => {
     const expense = expenses[2];
     expense.description = 'Credit Card Bill Payment';
-    const action = { type: 'EDIT_EXPENSE',  expense };
-    const state = expensesReducer( expenses, action );
+    const action = {type: 'EDIT_EXPENSE', expense};
+    const state = expensesReducer(expenses, action);
 
-    expect(state).toEqual([ expenses[0], expenses[1], expense ]);
+    expect(state).toEqual([expenses[0], expenses[1], expense]);
 });
 
 test('should NOT edit an expense if ID is not found', () => {
@@ -48,9 +53,9 @@ test('should NOT edit an expense if ID is not found', () => {
         createdAt: moment(0).valueOf()
     };
 
-    const action = { type: 'EDIT_EXPENSE', expense };
-    const state = expensesReducer( expenses, action );
+    const action = {type: 'EDIT_EXPENSE', expense};
+    const state = expensesReducer(expenses, action);
 
-    expect(state).toEqual(expenses);
-
+    expect(state)
+        .toEqual(expenses);
 });

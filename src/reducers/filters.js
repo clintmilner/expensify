@@ -1,6 +1,3 @@
-
-
-
 // FILTERS OBJ REDUCER
 import moment from "moment";
 

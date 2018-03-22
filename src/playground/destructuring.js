@@ -1,4 +1,4 @@
-console.log( 'destructuring.js is running' );
+console.log('destructuring.js is running');
 
 // const person = {
 //   name: 'Clint',
@@ -39,7 +39,6 @@ console.log( 'destructuring.js is running' );
 // ===================== ARRAYS ======================= \\
 
 
-
 const address = [
     'Woodlands',
     'Marlow Rd',
@@ -49,8 +48,8 @@ const address = [
     'HP14 3JP'
 ];
 
-const [house, road, city, county, country, postcode, planet='Earth'] = address;
-console.log( `you are in ${ city } in ${ country } on ${planet}`);
+const [house, road, city, county, country, postcode, planet = 'Earth'] = address;
+console.log(`you are in ${ city } in ${ country } on ${planet}`);
 
 
 
