@@ -9,7 +9,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 
 
-console.log('Section 12 Lecture 124 - Jest Testing');
+console.log('Section 13 Lecture 133 - Jest Testing');
 
 const store = configureStore();
 

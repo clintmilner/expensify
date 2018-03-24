@@ -3,34 +3,36 @@
 
 const path = require('path');
 
-module.exports = {
-    entry: './src/app.js',
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                loader: 'babel-loader',
-                test:   /\.js$/, // check to see if file ends in .js
-                exclude: /node_modules/
-            },
-            {
-                test: /\.s?css$/, // get all the CSS files
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
-        ]
-    },
-    devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true // needed for client-side routing (react-router-dom)
-    },
-    devtool: 'cheap-module-eval-source-map'
-};
+module.exports = (env) => {
+    const isProduction = env === 'production';
 
-// loaders exist per file type
+    return {
+        entry: './src/app.js',
+        output: {
+            path: path.join(__dirname, 'public'),
+            filename: 'bundle.js'
+        },
+        module: {
+            rules: [
+                {
+                    loader: 'babel-loader',
+                    test:   /\.js$/, // check to see if file ends in .js
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.s?css$/, // get all the CSS files
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                }
+            ]
+        },
+        devServer: {
+            contentBase: path.join(__dirname, 'public'),
+            historyApiFallback: true // needed for client-side routing (react-router-dom)
+        },
+        devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map'
+    }
+};
