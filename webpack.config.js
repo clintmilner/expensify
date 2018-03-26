@@ -2,9 +2,11 @@
 // output file and location - public/bundle.js
 
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env) => {
     const isProduction = env === 'production';
+    const CSSExtract = new ExtractTextPlugin('cm-styles.css');
 
     return {
         entry: './src/app.js',
@@ -20,12 +22,23 @@ module.exports = (env) => {
                     exclude: /node_modules/
                 },
                 {
-                    test: /\.s?css$/, // get all the CSS files
-                    use: [
-                        'style-loader',
-                        'css-loader',
-                        'sass-loader'
-                    ]
+                    test: /\.s?css$/, // get all the CSS/SCSS files
+                    use: CSSExtract.extract({
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    sourceMap:true
+                                }
+                            },
+                            {
+                                loader: 'sass-loader',
+                                options: {
+                                    sourceMap:true
+                                }
+                            }
+                        ]
+                    })
                 }
             ]
         },
@@ -33,6 +46,9 @@ module.exports = (env) => {
             contentBase: path.join(__dirname, 'public'),
             historyApiFallback: true // needed for client-side routing (react-router-dom)
         },
-        devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map'
+        plugins: [
+            CSSExtract
+        ],
+        devtool: isProduction ? 'source-map' : 'inline-source-map'
     }
 };
