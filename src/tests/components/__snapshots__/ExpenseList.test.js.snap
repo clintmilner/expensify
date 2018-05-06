@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render ExpenseList "No Expenses" msg 1`] = `
+exports[`should render ExpenseList with empty message 1`] = `
 <div>
   <p>
-    No Expenses
+    No expenses
   </p>
 </div>
 `;
@@ -11,40 +11,28 @@ exports[`should render ExpenseList "No Expenses" msg 1`] = `
 exports[`should render ExpenseList with expenses 1`] = `
 <div>
   <ExpenseListItem
-    expense={
-      Object {
-        "amount": 195,
-        "createdAt": "1970-01-01T00:00:00.000Z",
-        "description": "Gum",
-        "id": "1",
-        "note": "",
-      }
-    }
+    amount={195}
+    createdAt={0}
+    description="Gum"
+    id="1"
     key="1"
+    note=""
   />
   <ExpenseListItem
-    expense={
-      Object {
-        "amount": 200000,
-        "createdAt": -345600000,
-        "description": "Rent",
-        "id": "2",
-        "note": "",
-      }
-    }
+    amount={109500}
+    createdAt={-345600000}
+    description="Rent"
+    id="2"
     key="2"
+    note=""
   />
   <ExpenseListItem
-    expense={
-      Object {
-        "amount": 31100,
-        "createdAt": 345600000,
-        "description": "Credit Card",
-        "id": "3",
-        "note": "",
-      }
-    }
+    amount={4500}
+    createdAt={345600000}
+    description="Credit Card"
+    id="3"
     key="3"
+    note=""
   />
 </div>
 `;
